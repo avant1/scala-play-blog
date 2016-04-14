@@ -1,0 +1,40 @@
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+#### joe made this: http://goel.io/joe
+
+#####=== PlayFramework ===#####
+
+# Ignore Play! working directory #
+bin/
+/db
+.eclipse
+/lib/
+/logs/
+/modules
+/project/project
+/project/target
+tmp/
+test-result
+server.pid
+*.eml
+/dist/
+.cache
+
+vagrant@packer-virtualbox-iso:~$ joe playframework scala sbt
+#### joe made this: http://goel.io/joe
+
+
+#####=== Scala ===#####
+
+# sbt specific
+.lib/
+dist/*
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
