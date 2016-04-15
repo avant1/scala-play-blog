@@ -1,2 +1,11 @@
-run tests:
+1. Run tests:
 activator test
+
+2. Create runnable project archive:
+activator dist
+
+Archive will be created in target/universal/scala-blog-VERSION-SNAPSHOT.zip
+To run application, unarchive it and run:
+bin/scala-blog -Dapplication.secret=some-secret
+or
+"bin/scala-blog.bat" -Dapplication.secret=some-secret
