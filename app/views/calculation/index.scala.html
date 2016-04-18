@@ -16,9 +16,9 @@
         <div>
             <label for="sign">Sign</label>
             <select name="sign" id="sign">
-                <option value="" @(if (sign == "") {"selected"})>Please choose a sign</option>
-                <option value="+" @(if (sign == "+") {"selected"})>+</option>
-                <option value="-" @(if (sign == "-") {"selected"})>-</option>
+                <option value="" @(if (sign == "") {"selected"}) id="sign-none">Please choose a sign</option>
+                <option value="+" @(if (sign == "+") {"selected"}) id="sign-plus">+</option>
+                <option value="-" @(if (sign == "-") {"selected"})id="sign-minus">-</option>
             </select>
         </div>
 
@@ -35,7 +35,7 @@
     @if(formWasSubmitted) {
         <p>
             And the answer is:
-            <strong>@calculationResult</strong>
+            <strong id="calculation-result">@calculationResult</strong>
         </p>
     }
 
