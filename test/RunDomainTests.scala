@@ -7,10 +7,12 @@ import org.junit.runner.RunWith
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("test/features"),
-  plugin = Array("pretty")
+  plugin = Array("pretty"),
+  tags = Array("@domain"),
+  glue = Array("bootstrap.domain")
 
 )
-class RunCucumber extends {
+class RunDomainTests extends {
 
 
 }

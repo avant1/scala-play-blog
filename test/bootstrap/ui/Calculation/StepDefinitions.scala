@@ -1,22 +1,20 @@
-package bootstrap
+package bootstrap.ui.Calculation
 
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers
+import services.Calculation.Calculator
 
 class StepDefinitions extends ScalaDsl with EN with Matchers {
 
-  var number: Int = _
 
-  Given("""^I have number (-?\d+)$"""){ (inputNumber: Int) =>
-    number = inputNumber
+  Given("""^I have number (-?\d+)$"""){ (firstInputNumber: Int) =>
+    throw new Exception("Not implemented")
   }
   When("""^I add to this number (-?\d+)$"""){ (anotherNumber: Int) =>
-
-    number += anotherNumber
-
+    throw new Exception("Not implemented")
   }
   Then("""^the result should be (-?\d+)$"""){ (expectedResult: Int) =>
-    assertResult(expectedResult)(number)
+    throw new Exception("Not implemented")
   }
 
 }

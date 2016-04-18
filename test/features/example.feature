@@ -1,3 +1,4 @@
+@domain @ui
 Feature: Calculator
 
   Scenario: Adding numbers
