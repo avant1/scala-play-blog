@@ -1,0 +1,27 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+@import models.blog.BlogPost
+@import models.blog.BlogPostDto
+@(form: Form[BlogPostDto])(implicit messages: Messages)
+@*
+* Call the the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("Add new blog post") {
+
+
+    <h1>Adding new blog post...</h1>
+
+    @helper.form(action = routes.BlogController.savePost()) {
+        @helper.inputText(form("title"), 'id -> "some-id")
+        @helper.textarea(form("content"), 'rows -> 10, 'cols -> 200)
+
+        <input type="submit" value="Add post">
+
+    }
+
+
+}
