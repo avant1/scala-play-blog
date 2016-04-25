@@ -3,6 +3,7 @@ package bootstrap.blog.ui
 import bootstrap.common.UiStepDefinitions
 import cucumber.api.PendingException
 import cucumber.api.scala.{EN, ScalaDsl}
+import org.fluentlenium.core.filter.Filter
 import org.scalatest.Matchers
 
 class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Matchers {
@@ -41,8 +42,16 @@ class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Match
     assert(browser.pageSource().contains(contents))
   }
 
-  When("""^I create hidden blog post "([^"]+)" with contents$""") { (title: String, contentx: String) =>
-    throw new PendingException()
+  When("""^I create hidden blog post "([^"]+)" with contents$""") { (title: String, contents: String) =>
+    browser.goTo(controllers.routes.BlogController.index().toString)
+    browser.click(".add-post")
+
+    browser.findFirst("[name=title]").fill `with` title
+    browser.findFirst("[name=content]").fill `with` contents
+
+    browser.findFirst("[name=isHidden]").click()
+
+    browser.click("""[value="Add post"]""")
   }
 
   Then("^I should see no posts on blog index page$") { () =>

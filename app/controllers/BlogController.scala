@@ -19,7 +19,8 @@ class BlogController @Inject()(val messagesApi: MessagesApi) extends Controller 
   val blogPostForm = Form(
     mapping(
       "title" -> nonEmptyText,
-      "content" -> nonEmptyText(minLength = 101)
+      "content" -> nonEmptyText(minLength = 101),
+      "isHidden" -> boolean
     )(BlogPostDto.apply)(BlogPostDto.unapply)
   )
 

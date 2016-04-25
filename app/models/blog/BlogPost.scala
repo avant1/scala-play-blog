@@ -7,6 +7,7 @@ class BlogPost(dto: BlogPostDto) {
   val title = dto.title
   val content = dto.content
   val author = "me"
+  val isHidden = dto.isHidden
 
   private val id = BlogPost.generateNextId()
 

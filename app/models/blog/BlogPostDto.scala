@@ -1,3 +1,3 @@
 package models.blog
 
-case class BlogPostDto(var title: String, var content: String)
+case class BlogPostDto(var title: String, var content: String, var isHidden: Boolean)

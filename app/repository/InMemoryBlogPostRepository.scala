@@ -11,7 +11,7 @@ object InMemoryBlogPostRepository extends BlogPostRepository {
 
   override def getList(page: Int = 1): List[BlogPost] = {
     val from = (page - 1) * PostsPerPage
-    posts.slice(from, from + PostsPerPage).toList.reverse
+    posts.filter(post => !post.isHidden).slice(from, from + PostsPerPage).toList.reverse
   }
 
   override def getById(id: Int): BlogPost = {

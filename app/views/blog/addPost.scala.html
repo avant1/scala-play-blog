@@ -12,6 +12,8 @@
         @helper.inputText(form("title"), 'id -> "some-id")
         @helper.textarea(form("content"), 'rows -> 10, 'cols -> 200)
 
+        @helper.checkbox(form("isHidden"))
+
         <input type="submit" value="Add post">
 
     }

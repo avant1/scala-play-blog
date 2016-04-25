@@ -21,7 +21,6 @@ Feature: Create blog post
     Feel free to comment posts (through commenting is not implemented yet).
     """
 
-  @wip
   Scenario: User creates hidden blog post
     Given I am blog owner Bob
     When I create hidden blog post "My first blog post" with contents
