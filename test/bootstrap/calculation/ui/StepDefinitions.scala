@@ -1,4 +1,4 @@
-package bootstrap.ui.Calculation
+package bootstrap.calculation.ui
 
 import bootstrap.common.UiStepDefinitions
 import org.openqa.selenium.By

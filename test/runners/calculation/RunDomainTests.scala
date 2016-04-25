@@ -1,3 +1,5 @@
+package runners.calculation
+
 import cucumber.api.CucumberOptions
 import cucumber.api.junit.Cucumber
 import org.junit.runner.RunWith
@@ -6,11 +8,11 @@ import org.junit.runner.RunWith
 @CucumberOptions(
   features = Array("test/features"),
   plugin = Array("pretty"),
-  tags = Array("@ui"),
-  glue = Array("bootstrap.ui")
+  tags = Array("@domain"),
+  glue = Array("bootstrap.calculation.domain")
 
 )
-class RunUiTests extends {
+class RunDomainTests extends {
 
 
 }

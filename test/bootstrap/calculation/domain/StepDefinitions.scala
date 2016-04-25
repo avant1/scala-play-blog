@@ -1,4 +1,4 @@
-package bootstrap.domain.Calculation
+package bootstrap.calculation.domain
 
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers

@@ -1,32 +1,53 @@
 package bootstrap.blog.ui
 
 import bootstrap.common.UiStepDefinitions
+import cucumber.api.PendingException
 import cucumber.api.scala.{EN, ScalaDsl}
-import org.fluentlenium.core.filter.FilterConstructor._
 import org.scalatest.Matchers
-import play.api.Logger
-import play.api.test._
 
-class StepDefinitions extends UiStepDefinitions with ScalaDsl with EN with Matchers {
+class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Matchers {
 
-
-  Given("""^I have number (-?\d+)$"""){ (firstInputNumber: Float) =>
-    browser.goTo(controllers.routes.CalculationController.index().toString)
-    Logger.debug("Visited!!!")
-    browser.find("#firstInputNumber").text(firstInputNumber.toString)
+  Given("""^I am blog owner (.+)$""") { (name: String) =>
+    empty
   }
 
-  When("""^I add to this number (-?\d+)$"""){ (anotherNumber: Float) =>
-    browser.find("#secondInputNumber").text(anotherNumber.toString)
-    browser.fillSelect("#sign").withValue("+")
+  When("""^I create blog post "([^"]+)" with contents$""") { (title: String, contents: String) =>
+    browser.goTo(controllers.routes.BlogController.index().toString)
+    browser.click(".add-post")
 
+    browser.findFirst("[name=title]").fill `with` title
+    browser.findFirst("[name=content]").fill `with` contents
+
+    browser.click("""[value="Add post"]""")
   }
 
-  Then("""^the result should be (-?\d+)$"""){ (expectedResult: Float) =>
-    browser.click(withName("submit"))
+  Then("""^I should see blog post with title "(.+?)" on blog index page$""") { (title: String) =>
+    browser.goTo(controllers.routes.BlogController.index().toString)
 
-    assertResult(true)(browser.pageSource().contains("And the answer is"))
-    assertResult(expectedResult)(browser.$("#calculation-result").getText.toFloat)
+    assert(browser.pageSource().contains(title), "Expected that page will contain blog post title, but none found.")
+  }
+
+  Then("""^this blog post should have preview text "(.+)"$""") { (previewText: String) =>
+    browser.goTo(controllers.routes.BlogController.index().toString)
+
+    assert(browser.pageSource().contains(previewText))
+  }
+
+  When("""^I go to this blog post view page$""") { () =>
+    throw new PendingException()
+  }
+
+  Then("^I should see complete blog post contents$") { (contents: String) =>
+    throw new PendingException()
+  }
+
+  When("""^I create hidden blog post "([^"]+)" with contents$""") { (title: String, contentx: String) =>
+    throw new PendingException()
+  }
+
+  Then("^I should see no posts on blog index page$") { () =>
+    browser.goTo(controllers.routes.BlogController.index().toString)
+    assert(browser.find(".blog-post").isEmpty)
   }
 
 }

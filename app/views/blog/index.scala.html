@@ -15,7 +15,7 @@
 
     <h1>Welcome to my blog</h1>
 
-    <a href="@routes.BlogController.addPost()">Create new post</a>
+    <a href="@routes.BlogController.addPost()" class="add-post">Create new post</a>
 
 
     @for(post <- posts) {
@@ -25,7 +25,7 @@
             <h3>@post.title</h3>
             <em>by @post.author</em>
 
-            <pre>@post.content</pre>
+            <pre>@post.preview</pre>
         </div>
     }
 

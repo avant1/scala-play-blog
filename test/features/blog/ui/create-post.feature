@@ -21,6 +21,7 @@ Feature: Create blog post
     Feel free to comment posts (through commenting is not implemented yet).
     """
 
+  @wip
   Scenario: User creates hidden blog post
     Given I am blog owner Bob
     When I create hidden blog post "My first blog post" with contents
@@ -31,6 +32,7 @@ Feature: Create blog post
     """
     Then I should see no posts on blog index page
 
+  @wip
   Scenario: User tries to create blog post, but he provides empty title
     Given I am blog owner Bob
     When I try to create blog post with empty title
