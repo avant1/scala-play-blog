@@ -8,15 +8,13 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.i18n.{I18nSupport, MessagesApi}
+import repository.InMemoryBlogPostRepository
 
 
 @Singleton
 class BlogController @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
-  var blogPosts: Array[BlogPost] = Array(
-    new BlogPost(BlogPostDto("das is first post", "rly")),
-    new BlogPost(BlogPostDto("keep up working on my blog", "can you beleive this?"))
-  )
+  val blogPostRepository = InMemoryBlogPostRepository
 
   val blogPostForm = Form(
     mapping(
@@ -27,7 +25,7 @@ class BlogController @Inject()(val messagesApi: MessagesApi) extends Controller 
 
 
   def index() = Action {
-    Ok(views.html.blog.index(blogPosts.reverse))
+    Ok(views.html.blog.index(blogPostRepository.getList()))
   }
 
 
@@ -43,17 +41,11 @@ class BlogController @Inject()(val messagesApi: MessagesApi) extends Controller 
 
       blogPostDto => {
         val blogPost = new BlogPost(blogPostDto)
-
-
-        blogPosts = blogPosts :+ blogPost
+        blogPostRepository.add(blogPost)
 
         Redirect(routes.BlogController.index())
-
-
       }
     )
   }
-
-
 
 }

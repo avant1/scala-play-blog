@@ -3,7 +3,7 @@
  * message to display.
  *@
 @import models.blog.BlogPost
-@(posts: Array[BlogPost])
+@(posts: List[BlogPost])
 
 @*
  * Call the the `main` template with two arguments. The first
@@ -20,14 +20,12 @@
 
     @for(post <- posts) {
 
-        <div style="border: 1px solid black">
+        <div style="border: 1px solid black" class="blog-post">
 
             <h3>@post.title</h3>
             <em>by @post.author</em>
 
-            <pre>
-                @post.content
-            </pre>
+            <pre>@post.content</pre>
         </div>
     }
 

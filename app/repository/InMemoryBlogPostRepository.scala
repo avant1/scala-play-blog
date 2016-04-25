@@ -9,9 +9,9 @@ object InMemoryBlogPostRepository extends BlogPostRepository {
 
   val posts = ListBuffer[BlogPost]()
 
-  override def getList(page: Int): List[BlogPost] = {
+  override def getList(page: Int = 1): List[BlogPost] = {
     val from = (page - 1) * PostsPerPage
-    posts.slice(from, from + PostsPerPage).toList
+    posts.slice(from, from + PostsPerPage).toList.reverse
   }
 
   override def getById(id: Int): BlogPost = {
