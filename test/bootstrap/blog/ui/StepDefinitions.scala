@@ -34,11 +34,11 @@ class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Match
   }
 
   When("""^I go to this blog post view page$""") { () =>
-    throw new PendingException()
+    browser.click(".read-more")
   }
 
   Then("^I should see complete blog post contents$") { (contents: String) =>
-    throw new PendingException()
+    assert(browser.pageSource().contains(contents))
   }
 
   When("""^I create hidden blog post "([^"]+)" with contents$""") { (title: String, contentx: String) =>

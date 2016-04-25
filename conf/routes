@@ -14,6 +14,7 @@ GET         /calculator            controllers.CalculationController.index(first
 GET         /blog                  controllers.BlogController.index()
 GET         /blog/add-post         controllers.BlogController.addPost()
 POST        /blog/save-post        controllers.BlogController.savePost()
+GET         /blog/posts/:id/view   controllers.BlogController.view(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,17 @@
+@import models.blog.BlogPost
+@import models.blog.BlogPostDto
+
+@(post: BlogPost)
+
+@main("View post #" + post.getId + ": " + post.title) {
+
+
+    <h1>@post.title</h1>
+    <em>by me</em>
+
+    <div class="post-content">
+        <pre>@post.content</pre>
+    </div>
+
+
+}

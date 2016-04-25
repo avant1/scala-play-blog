@@ -15,7 +15,7 @@ object InMemoryBlogPostRepository extends BlogPostRepository {
   }
 
   override def getById(id: Int): BlogPost = {
-    throw new NotImplementedError()
+    posts.filter(post => post.getId == id).head
   }
 
   override def add(post: BlogPost): Unit = {

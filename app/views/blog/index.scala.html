@@ -1,15 +1,7 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
 @import models.blog.BlogPost
+
 @(posts: List[BlogPost])
 
-@*
- * Call the the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
 @main("This is the blog") {
 
 
@@ -26,6 +18,7 @@
             <em>by @post.author</em>
 
             <pre>@post.preview</pre>
+            <a href="@routes.BlogController.view(post.getId)" class="read-more">Read more</a>
         </div>
     }
 

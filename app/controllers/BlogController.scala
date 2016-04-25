@@ -48,4 +48,12 @@ class BlogController @Inject()(val messagesApi: MessagesApi) extends Controller 
     )
   }
 
+  def view(id: Int) = Action { request =>
+
+    val post = blogPostRepository.getById(id)
+
+
+    Ok(views.html.blog.view(post))
+  }
+
 }
