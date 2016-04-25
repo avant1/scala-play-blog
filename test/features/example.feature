@@ -1,7 +1,6 @@
-@domain
+@domain @ui
 Feature: Calculator
 
-  @ui
   Scenario: Adding numbers
     Given I have number 5
     When I add to this number 44

@@ -13,18 +13,27 @@ trait UiStepDefinitions {
   val app = FakeApplication()
   val port = 3333
 
+  var isRunning = false
 
   lazy val browser: TestBrowser = TestBrowser.of(webDriverClass, Some("http://localhost:" + port))
   lazy val server = TestServer(port, app)
 
   Before() { s =>
-    server.start()
+    if (!isRunning) {
+      server.start()
+      isRunning = true
+    }
   }
 
 
   After() { s =>
-    server.stop()
-    browser.quit()
+
+    if (isRunning) {
+      //todo this stuff must be stopped, but if i uncomment this now
+      //todo second and subsequent UI scenarios will not be runned
+//      server.stop()
+//      browser.quit()
+    }
   }
 
 
