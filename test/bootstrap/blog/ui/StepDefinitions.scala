@@ -5,8 +5,13 @@ import cucumber.api.PendingException
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.fluentlenium.core.filter.Filter
 import org.scalatest.Matchers
+import repository.InMemoryBlogPostRepository
 
 class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Matchers {
+
+  Before() { s =>
+    InMemoryBlogPostRepository.reset()
+  }
 
   Given("""^I am blog owner (.+)$""") { (name: String) =>
     empty
@@ -58,5 +63,19 @@ class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Match
     browser.goTo(controllers.routes.BlogController.index().toString)
     assert(browser.find(".blog-post").isEmpty)
   }
+
+  When("^I try to create blog post with empty title$") { () =>
+    browser.goTo(controllers.routes.BlogController.index().toString)
+    browser.click(".add-post")
+    browser.findFirst("[name=content]").fill `with` "some content" * 100
+
+    browser.click("""[value="Add post"]""")
+  }
+
+  Then("""^I should receive validation message saying that title should not have empty value$""") { () =>
+    assert(browser.url() == controllers.routes.BlogController.savePost().toString)
+    assert(browser.pageSource().contains("This field is required"))
+  }
+
 
 }

@@ -31,7 +31,6 @@ Feature: Create blog post
     """
     Then I should see no posts on blog index page
 
-  @wip
   Scenario: User tries to create blog post, but he provides empty title
     Given I am blog owner Bob
     When I try to create blog post with empty title

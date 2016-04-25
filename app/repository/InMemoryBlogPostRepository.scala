@@ -6,6 +6,7 @@ import repository.general.BlogPostRepository
 import scala.collection.mutable.ListBuffer
 
 object InMemoryBlogPostRepository extends BlogPostRepository {
+  def reset() = posts.remove(0, posts.length)
 
   val posts = ListBuffer[BlogPost]()
 
