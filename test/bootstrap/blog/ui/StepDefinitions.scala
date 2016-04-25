@@ -1,17 +1,14 @@
-package bootstrap.ui.Calculation
+package bootstrap.blog.ui
 
 import bootstrap.common.UiStepDefinitions
-import org.openqa.selenium.By
 import cucumber.api.scala.{EN, ScalaDsl}
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.fluentlenium.core.filter.FilterConstructor._
 import org.scalatest.Matchers
 import play.api.Logger
 import play.api.test._
-import org.openqa.selenium._
-import org.fluentlenium.core.filter.FilterConstructor._
-import org.scalatest.selenium.HtmlUnit
 
-class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Matchers {
+class StepDefinitions extends UiStepDefinitions with ScalaDsl with EN with Matchers {
+
 
   Given("""^I have number (-?\d+)$"""){ (firstInputNumber: Float) =>
     browser.goTo(controllers.routes.CalculationController.index().toString)
