@@ -1,25 +1,45 @@
 @import models.blog.BlogPost
 
+@import services.Menu
 @(posts: List[BlogPost])
 
-@main("This is the blog") {
+@main("This is the blog", Menu.HOME) {
 
 
-    <h1>Welcome to my blog</h1>
+    @if(posts.isEmpty) {
 
-    <a href="@routes.BlogController.addPost()" class="add-post">Create new post</a>
-
-
-    @for(post <- posts) {
-
-        <div style="border: 1px solid black" class="blog-post">
-
-            <h3>@post.title</h3>
-            <em>by @post.author</em>
-
-            <pre>@post.preview</pre>
-            <a href="@routes.BlogController.view(post.getId)" class="read-more">Read more</a>
+        <div class="ui warning message">
+            <div class="header">
+                No posts yet.
+            </div>
+            Probably you are the first visitor. Congrats!
         </div>
+
+    } else {
+
+        @for(post <- posts) {
+
+
+            <div class="ui piled segment blog-post">
+
+                <div class="ui container" style="clear : both">
+                    <h4 class="ui header">@post.title</h4>
+
+                    <p>
+                        @post.preview
+                    </p>
+                    <a href="@routes.BlogController.view(post.getId)" class="read-more ui labeled icon button">
+                        <i class="right arrow icon"></i>
+                        Read more
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        }
+
     }
 
 }

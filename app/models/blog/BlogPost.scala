@@ -17,6 +17,8 @@ class BlogPost(dto: BlogPostDto) {
 
   def getId = id
 
+  def renderedContent = content.replace("\n", "<br/>")
+
 }
 
 object BlogPost {

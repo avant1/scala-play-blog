@@ -57,6 +57,8 @@ class StepDefinitions extends ScalaDsl with UiStepDefinitions with EN with Match
     browser.findFirst("[name=isHidden]").click()
 
     browser.click("""[value="Add post"]""")
+
+    assert(browser.url() == controllers.routes.BlogController.index().toString)
   }
 
   Then("^I should see no posts on blog index page$") { () =>

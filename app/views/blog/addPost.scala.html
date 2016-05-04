@@ -1,9 +1,10 @@
 @import models.blog.BlogPost
 @import models.blog.BlogPostDto
 
+@import services.Menu
 @(form: Form[BlogPostDto])(implicit messages: Messages)
 
-@main("Add new blog post") {
+@main("Add new blog post", Menu.ADD_POST) {
 
 
     <h1>Adding new blog post...</h1>

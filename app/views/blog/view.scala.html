@@ -1,16 +1,18 @@
 @import models.blog.BlogPost
 @import models.blog.BlogPostDto
 
+@import services.Menu
 @(post: BlogPost)
 
-@main("View post #" + post.getId + ": " + post.title) {
+@main("View post #" + post.getId + ": " + post.title, Menu.VIEW_POST) {
 
 
-    <h1>@post.title</h1>
-    <em>by me</em>
+    <div class="ui justified text container ">
+        <h1 class="ui header">@post.title</h1>
+        <em class="ui floated right">by Kirill</em>
 
-    <div class="post-content">
-        <pre>@post.content</pre>
+        @Html(post.renderedContent)
+
     </div>
 
 

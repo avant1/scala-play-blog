@@ -22,4 +22,6 @@ libraryDependencies += "pl.newicom" % "sbt-cucumber-integration_2.11" % "1.0.0"
 libraryDependencies += "info.cukes" % "cucumber-junit" % "1.2.3"
 libraryDependencies += "junit" % "junit" % "4.12"
 
+libraryDependencies += "org.webjars.bower" % "semantic-ui" % "2.1.8"
+
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
