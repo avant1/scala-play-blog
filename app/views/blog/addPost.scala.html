@@ -1,7 +1,10 @@
 @import models.blog.BlogPost
 @import models.blog.BlogPostDto
-
 @import services.Menu
+@import views.html.form.semanticui._
+
+@import templating.helpers._
+
 @(form: Form[BlogPostDto])(implicit messages: Messages)
 
 @main("Add new blog post", Menu.ADD_POST) {
@@ -9,13 +12,14 @@
 
     <h1>Adding new blog post...</h1>
 
-    @helper.form(action = routes.BlogController.savePost()) {
+    @helper.form(action = routes.BlogController.savePost(), 'class -> "ui form") {
         @helper.inputText(form("title"), 'id -> "some-id")
-        @helper.textarea(form("content"), 'rows -> 10, 'cols -> 200)
+        @helper.textarea(form("content"), 'rows -> 10)
 
+        @* todo there is error during submitting form with checked checkbox when using semanticui templates *@
         @helper.checkbox(form("isHidden"))
 
-        <input type="submit" value="Add post">
+        <input type="submit" value="Add post" class="ui green button">
 
     }
 

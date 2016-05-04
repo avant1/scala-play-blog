@@ -1,0 +1,18 @@
+@(field: play.api.data.Field, args: (Symbol, Any)*)(implicit handler: helper.FieldConstructor, lang: play.api.i18n.Lang)
+
+
+<div class="field @if(field.hasErrors) {error}">
+    <div class="ui checkbox">
+        <input type="checkbox" id="@field.id" name="@field.name">
+        <label for="@field.id" @toHtmlArgs(args.toMap)>@field.label</label>
+    </div>
+
+    @if(field.hasErrors) {
+        <div class="ui pointing red basic label">
+        @{
+            field.errors.mkString(", ")
+        }
+        </div>
+    }
+
+</div>

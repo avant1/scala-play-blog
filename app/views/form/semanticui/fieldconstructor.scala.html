@@ -1,0 +1,16 @@
+@(elements: helper.FieldElements)
+
+<div class="field @if(elements.hasErrors) {error}">
+    <label for="@elements.id">@elements.label</label>
+
+    @elements.input
+
+    @if(elements.hasErrors) {
+        <div class="ui pointing red basic label">
+        @{
+            elements.errors.mkString(", ")
+        }
+        </div>
+    }
+
+</div>
