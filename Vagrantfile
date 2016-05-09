@@ -1,9 +1,11 @@
 $deploy = <<SCRIPT
 
+echo 'deb http://http.debian.net/debian jessie-backports main' > /etc/apt/sources.list.d/backports.list
 apt-get update
-apt-get install python-pip python-dev git -y
-pip install ansible
+apt-get upgrade -y
+apt-get -t jessie-backports install "ansible" -y
 
+ansible-playbook -i /vagrant/deploy/dev /vagrant/deploy/deploy-vagrant.yml
 
 SCRIPT
 
@@ -17,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.cpus = 2
   end
 
-  config.vm.network "private_network", type: "dhcp", ip: "192.168.40.3"
+  config.vm.network "private_network", ip: "192.168.40.3"
 
   config.vm.provider "virtualbox"
 

@@ -13,8 +13,14 @@
 - name: install docker
   apt: pkg=docker-engine state=present
 
+- name: collect data to check if docker-compose installed
+  shell: docker-compose --version
+  register: docker_compose_version
+  ignore_errors: true
+
 - name: install docker-compose
   shell: curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+  when: "'not found' in docker_compose_version.stderr"
 
 - name: collect docker/docker-compose versions
   shell: docker --version && docker-compose --version
