@@ -1,0 +1,30 @@
+- name: ensure docker from jessie repo removed
+  apt: pkg=docker.io state=absent
+
+- name: add https apt transport
+  apt: pkg=apt-transport-https state=present
+
+- name: add docker repo key
+  apt_key: keyserver=p80.pool.sks-keyservers.net id=58118E89F3A912897C070ADBF76221572C52609D state=present
+
+- name: add docker repo
+  apt_repository: repo='deb https://apt.dockerproject.org/repo debian-jessie main' state=present
+
+- name: install docker
+  apt: pkg=docker-engine state=present
+
+- name: collect data to check if docker-compose installed
+  shell: docker-compose --version
+  register: docker_compose_version
+  ignore_errors: true
+
+- name: install docker-compose
+  shell: curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+  when: "'not found' in docker_compose_version.stderr"
+
+- name: collect docker/docker-compose versions
+  shell: docker --version && docker-compose --version
+  register: docker_versions
+
+- name: print docker/docker-compose versions
+  debug: var=docker_versions.stdout_lines

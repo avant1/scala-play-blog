@@ -1,0 +1,9 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - dist-upgrade
+    - shell-tools
+    - docker
+    - java
+    - sbt

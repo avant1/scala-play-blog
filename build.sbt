@@ -25,3 +25,6 @@ libraryDependencies += "junit" % "junit" % "4.12"
 libraryDependencies += "org.webjars.bower" % "semantic-ui" % "2.1.8"
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
