@@ -34,8 +34,13 @@ So, for now, it makes sense to run application on host with rest services inside
 containers on VM during development.
 
 
-##Deploy to prod
-Something like http://www.scala-sbt.org/sbt-native-packager/formats/docker.html
+##Production-like deployment
+```bash
+sbt docker:publishLocal
+docker run -d -p 9000:9000 -e "APP_SECRET=somesecret" scala-blog:1.0-SNAPSHOT
+```
+Now you can visit http://192.168.40.3:9000/
+
 
 ##Running tests
 `activator test`
